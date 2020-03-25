@@ -12,10 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const mongoose_unique_validator_1 = __importDefault(require("mongoose-unique-validator"));
-const EmpresaSchema = new mongoose_1.Schema({
-    nombre: { type: String, unique: true, required: [true, 'El nombre de la empresa es obligatorio'] },
-    estado: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Estado' },
+const EstadoSchema = new mongoose_1.Schema({
+    N_Estado: { type: String, required: [true, 'El nombre del estado es obligatorio'] },
+    capital: { type: String, required: [true, 'la cpital es obligatoria'] },
+    municipio: { type: String, required: [true, 'El municipio es obligatorio'] },
+    codigopostal: { type: Number, required: [true, 'el codigo postal es necesario'] },
     status: { type: String, default: 'ACTIVO' }
-}, { collection: 'empresa' });
-EmpresaSchema.plugin(mongoose_unique_validator_1.default, { message: '{PATH} debe ser unico' });
-exports.default = mongoose_1.default.model('Empresa', EmpresaSchema);
+}, { collection: 'Estado' });
+EstadoSchema.plugin(mongoose_unique_validator_1.default, { message: '{PATH} debe ser unico' });
+exports.default = mongoose_1.default.model('Estado', EstadoSchema);

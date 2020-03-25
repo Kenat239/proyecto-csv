@@ -9,7 +9,7 @@ export interface IEmpresa extends Document {
 
 const EmpresaSchema: Schema = new Schema({
     nombre: { type: String, unique:true, required: [true, 'El nombre de la empresa es obligatorio']},
-    estado: { type: String, required: [true, 'El estado de la empresa es obligatorio'] },
+    estado: { type: Schema.Types.ObjectId, ref: 'Estado' },
     status: { type: String, default: 'ACTIVO'}
 }, { collection: 'empresa'} );
 

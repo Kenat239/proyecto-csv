@@ -15,6 +15,7 @@ const empresa_1 = __importDefault(require("./rutas/empresa"));
 const vehiculo_1 = __importDefault(require("./rutas/vehiculo"));
 const csv_1 = __importDefault(require("./rutas/csv"));
 const uploads_1 = __importDefault(require("./rutas/uploads"));
+const estados_1 = __importDefault(require("./rutas/estados"));
 const server = server_1.default.instance;
 // BodyParser
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -28,6 +29,7 @@ server.app.use('/empresa', empresa_1.default);
 server.app.use('/vehiculo', vehiculo_1.default);
 server.app.use('/csv', csv_1.default);
 server.app.use('/upload', uploads_1.default);
+server.app.use('/estado', estados_1.default);
 // Conexión a base de datos mongoDB
 mongoose_1.default.connect(`mongodb://${environment_1.DB_URL}`, { useCreateIndex: true, useNewUrlParser: true }, (err) => {
     if (err)

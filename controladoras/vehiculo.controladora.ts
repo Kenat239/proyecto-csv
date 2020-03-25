@@ -68,7 +68,7 @@ async function CargarVehiculos():Promise<IVehiculo> {
 async function BuscarVehiculo( id: any ){
 
     return new Promise( ( resolve, reject) => {
-        Vehiculo.findById({ _id: id }, 'placas noSerie empresa gps status')
+        Vehiculo.findById({ _id: id }, 'placas noSerie empresa gps status status2')
         .then( ( resultado: any ) => {
             resolve( resultado );
         })

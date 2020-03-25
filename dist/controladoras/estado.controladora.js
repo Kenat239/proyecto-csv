@@ -12,62 +12,69 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const vehiculo_1 = __importDefault(require("../modelos/vehiculo"));
-const gps_1 = __importDefault(require("../modelos/gps"));
+const estados_1 = __importDefault(require("../modelos/estados"));
 //=======================================================
-// Crear vehiculo
-//====================================================
-function CrearVehiculo({ placas, noSerie, gps, empresa, }) {
+// Crear Empresa
+//=======================================================
+function crearEstado({ N_Estado, capital, municipio, codigopostal, status }) {
     return __awaiter(this, void 0, void 0, function* () {
-        return vehiculo_1.default.create({
-            placas,
-            noSerie,
-            gps,
-            empresa
+        return estados_1.default.create({
+            N_Estado,
+            capital,
+            municipio,
+            codigopostal,
+            status
         })
             .then((datos) => {
-            console.log(datos.gps);
-            return new Promise((resolve, reject) => {
-                gps_1.default.updateOne({ _id: datos.gps }, { $set: { status2: 'no disponible' } })
-                    .then((gps) => {
-                    resolve(gps);
-                })
-                    .catch((error) => {
-                    reject(error);
-                });
-            }),
-                datos;
+            return datos;
         })
-            .catch((error) => {
-            throw error;
+            .catch((err) => {
+            throw err;
         });
     });
 }
-exports.CrearVehiculo = CrearVehiculo;
+exports.crearEstado = crearEstado;
 //=======================================================
-// Consultar todas los Vehiculos Activos
+// Consultar todos los Estados
 //=======================================================
-function CargarVehiculos() {
+function cargarEstado() {
     return __awaiter(this, void 0, void 0, function* () {
-        return vehiculo_1.default.find({ status: 'ACTIVO' })
-            .then((vehiculos) => {
-            return vehiculos;
+        return estados_1.default.find()
+            .then((estados) => {
+            return estados;
         })
-            .catch((error) => {
-            throw error;
+            .catch((err) => {
+            throw err;
         });
     });
 }
-exports.CargarVehiculos = CargarVehiculos;
+exports.cargarEstado = cargarEstado;
 //=======================================================
-// buscar Vehiculo especifico por id
+// buscar Estado especifico por id
 //=======================================================
-function BuscarVehiculo(id) {
+function buscarEstado(id) {
     return __awaiter(this, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            vehiculo_1.default.findById({ _id: id }, 'placas noSerie empresa gps status status2')
+            estados_1.default.findById({ _id: id }, 'N_Estado municipio codigopostal status')
                 .then((resultado) => {
                 resolve(resultado);
+            })
+                .catch((err) => {
+                reject(err);
+            });
+        });
+    });
+}
+exports.buscarEstado = buscarEstado;
+//=======================================================
+// Desactivar o Activar Estado
+//=======================================================
+function desactivaEstado(id, stat) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            estados_1.default.updateOne({ _id: id }, { $set: { status: stat } })
+                .then((estadoD) => {
+                resolve(estadoD);
             })
                 .catch((error) => {
                 reject(error);
@@ -75,21 +82,4 @@ function BuscarVehiculo(id) {
         });
     });
 }
-exports.BuscarVehiculo = BuscarVehiculo;
-//=======================================================
-// Desactivar o Activar Vehiculo
-//=======================================================
-function DesactivarVehiculo(id, stat) {
-    return __awaiter(this, void 0, void 0, function* () {
-        return new Promise((resolve, reject) => {
-            vehiculo_1.default.updateOne({ _id: id }, { $set: { status: stat } })
-                .then((resultado) => {
-                resolve(resultado);
-            })
-                .catch((error) => {
-                reject(error);
-            });
-        });
-    });
-}
-exports.DesactivarVehiculo = DesactivarVehiculo;
+exports.desactivaEstado = desactivaEstado;

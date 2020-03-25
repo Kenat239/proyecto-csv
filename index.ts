@@ -12,6 +12,7 @@ import empresaRoutes from './rutas/empresa';
 import vehiculoRoutes from './rutas/vehiculo';
 import csvRoutes from './rutas/csv';
 import app from './rutas/uploads';
+import estadoRoutes from './rutas/estados';
 
 
 const server = Server.instance;
@@ -30,6 +31,7 @@ server.app.use('/empresa', empresaRoutes );
 server.app.use( '/vehiculo', vehiculoRoutes );
 server.app.use('/csv', csvRoutes);
 server.app.use('/upload', app);
+server.app.use('/estado', estadoRoutes)
 
 // Conexión a base de datos mongoDB
 mongoose.connect(`mongodb://${ DB_URL }`, { useCreateIndex: true, useNewUrlParser: true}, ( err ) => {
