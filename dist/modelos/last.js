@@ -11,7 +11,7 @@ const mongoose_1 = __importStar(require("mongoose"));
 const globales_1 = require("../funciones/globales");
 const lastShema = new mongoose_1.Schema({
     idGps: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Gps' },
-    latidud: { type: Number, required: [false, 'se necesita la latitud'] },
+    latitud: { type: Number, required: [true, 'se necesita la latitud'] },
     longitud: { type: Number, required: [true, 'se necesita la longitud'] },
     altitud: { type: Number, required: [true, 'se necesita la altitud'] },
     velocidad: { type: String, required: [true, 'se necesita la velocidad'] },

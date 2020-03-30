@@ -17,15 +17,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const last = __importStar(require("../controladoras/gps.controladora"));
+const last = __importStar(require("../controladoras/last.controladora"));
 const lastRoutes = express_1.Router();
 //========================================================
 // Guardar Ubicacion GPS
 //========================================================
 lastRoutes.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
-    yield last.lastUbication({
-        idGps: body.idGps,
+    yield last.HistorialAndLast({
         protocolo: body.protocolo,
         imei: body.imei,
         latitud: body.latitud,
@@ -43,6 +42,7 @@ lastRoutes.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* (
         distancia: body.distancia,
         distanciatotal: body.distanciatotal,
         movimiento: body.movimiento,
+        gps: body.gps
     }).then((lastCreada) => {
         return res.status(200).json({
             ok: true,

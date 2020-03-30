@@ -17,6 +17,7 @@ const csv_1 = __importDefault(require("./rutas/csv"));
 const uploads_1 = __importDefault(require("./rutas/uploads"));
 const estados_1 = __importDefault(require("./rutas/estados"));
 const last_1 = __importDefault(require("./rutas/last"));
+const tipoauto_1 = __importDefault(require("./rutas/tipoauto"));
 const server = server_1.default.instance;
 // BodyParser
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -32,6 +33,7 @@ server.app.use('/csv', csv_1.default);
 server.app.use('/upload', uploads_1.default);
 server.app.use('/estado', estados_1.default);
 server.app.use('/last', last_1.default);
+server.app.use('/auto', tipoauto_1.default);
 // Conexión a base de datos mongoDB
 mongoose_1.default.connect(`mongodb://${environment_1.DB_URL}`, { useCreateIndex: true, useNewUrlParser: true }, (err) => {
     if (err)

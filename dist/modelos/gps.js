@@ -14,7 +14,7 @@ const mongoose_1 = __importStar(require("mongoose"));
 const mongoose_unique_validator_1 = __importDefault(require("mongoose-unique-validator"));
 const gpsSchema = new mongoose_1.Schema({
     serie: { type: String, unique: true, required: [true, 'La serie de GPS es obligatorio'] },
-    imei: { type: String, unique: true, required: [true, 'El IMEI del GPS es obligatorio'] },
+    imei: { type: String, required: [true, 'El IMEI del GPS es obligatorio'] },
     latitud: { type: Number, required: [true, 'La latitud es requerida'] },
     longitud: { type: Number, required: [true, 'La longitud es requerida'] },
     velocidad: { type: String, required: [true, 'la velocidad es requerida'] },

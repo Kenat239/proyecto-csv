@@ -12,19 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const gps_1 = __importDefault(require("../modelos/gps"));
+const tipoauto_1 = __importDefault(require("../modelos/tipoauto"));
 //=======================================================
-// Crear GPS
+// Crear vehiculo
 //=======================================================
-function CrearGps({ serie, imei, latitud, longitud, velocidad, alarma, }) {
+function CrearTipoauto({ nombre, marca, modelo, tipo, npuertas, }) {
     return __awaiter(this, void 0, void 0, function* () {
-        return gps_1.default.create({
-            serie,
-            imei,
-            latitud,
-            longitud,
-            velocidad,
-            alarma,
+        return tipoauto_1.default.create({
+            nombre,
+            marca,
+            modelo,
+            tipo,
+            npuertas
         })
             .then((datos) => {
             return datos;
@@ -34,44 +33,29 @@ function CrearGps({ serie, imei, latitud, longitud, velocidad, alarma, }) {
         });
     });
 }
-exports.CrearGps = CrearGps;
+exports.CrearTipoauto = CrearTipoauto;
 //=======================================================
-// Consultar todos los GPS's Activos
+// Consultar todas los Vehiculos Activos
 //=======================================================
-function CargarGpss() {
+function CargarTipoauto() {
     return __awaiter(this, void 0, void 0, function* () {
-        return gps_1.default.find({ status: 'ACTIVO' })
-            .then((gpss) => {
-            return gpss;
+        return tipoauto_1.default.find({ status: 'ACTIVO' })
+            .then((vehiculos) => {
+            return vehiculos;
         })
             .catch((error) => {
             throw error;
         });
     });
 }
-exports.CargarGpss = CargarGpss;
+exports.CargarTipoauto = CargarTipoauto;
 //=======================================================
-// Consultar todos los GPS's disponibles
+// buscar Vehiculo especifico por id
 //=======================================================
-function DispGpss() {
-    return __awaiter(this, void 0, void 0, function* () {
-        return gps_1.default.find({ status2: 'DISPONIBLE' })
-            .then((gpsD) => {
-            return gpsD;
-        })
-            .catch((error) => {
-            throw error;
-        });
-    });
-}
-exports.DispGpss = DispGpss;
-//=======================================================
-// Buscar GPS especifico
-//=======================================================
-function BuscarGps(id) {
+function BuscarTipoauto(id) {
     return __awaiter(this, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            gps_1.default.findById({ _id: id }, 'serie latitud longitud velocidad alarma status')
+            tipoauto_1.default.findById({ _id: id }, 'nombre marca modelo tipo status')
                 .then((resultado) => {
                 resolve(resultado);
             })
@@ -81,14 +65,14 @@ function BuscarGps(id) {
         });
     });
 }
-exports.BuscarGps = BuscarGps;
+exports.BuscarTipoauto = BuscarTipoauto;
 //=======================================================
-// Desactivar o Activar GPS
+// Desactivar o Activar Vehiculo
 //=======================================================
-function DesactivarGps(id, stat) {
+function DesactivarTipoauto(id, stat) {
     return __awaiter(this, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            gps_1.default.updateOne({ _id: id }, { $set: { status: stat } })
+            tipoauto_1.default.updateOne({ _id: id }, { $set: { status: stat } })
                 .then((resultado) => {
                 resolve(resultado);
             })
@@ -98,4 +82,4 @@ function DesactivarGps(id, stat) {
         });
     });
 }
-exports.DesactivarGps = DesactivarGps;
+exports.DesactivarTipoauto = DesactivarTipoauto;

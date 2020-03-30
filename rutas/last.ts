@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import * as last from '../controladoras/gps.controladora';
+import * as last from '../controladoras/last.controladora';
 
 
 const lastRoutes = Router();
@@ -9,9 +9,8 @@ const lastRoutes = Router();
 lastRoutes.post('/', async( req: Request, res: Response ) => {
     const body = req.body;
 
-    await last.lastUbication( {
-          idGps:body.idGps, 
-        protocolo: body.protocolo,
+    await last.HistorialAndLast( {
+           protocolo: body.protocolo,
             imei: body.imei,
             latitud: body.latitud,
             longitud: body.longitud,
@@ -28,6 +27,7 @@ lastRoutes.post('/', async( req: Request, res: Response ) => {
             distancia: body.distancia,
             distanciatotal: body.distanciatotal,
             movimiento: body.movimiento,
+            gps:body.gps
     }).then(( lastCreada: any ) => {
         return res.status(200).json({
             ok: true,

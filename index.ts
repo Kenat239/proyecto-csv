@@ -3,7 +3,7 @@ import { SERVER_PORT, DB_URL } from './global/environment';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import Gps from './clases/tracking';
+
 
 // Importar rutas
 import usuarioRoutes from './rutas/usuario';
@@ -14,6 +14,7 @@ import csvRoutes from './rutas/csv';
 import app from './rutas/uploads';
 import estadoRoutes from './rutas/estados';
 import lastRoutes from './rutas/last';
+import tipoautoRoutes from './rutas/tipoauto';
 
 
 
@@ -35,7 +36,7 @@ server.app.use('/csv', csvRoutes);
 server.app.use('/upload', app);
 server.app.use('/estado', estadoRoutes);
 server.app.use('/last', lastRoutes)
-
+server.app.use('/auto', tipoautoRoutes);
 // Conexión a base de datos mongoDB
 mongoose.connect(`mongodb://${ DB_URL }`, { useCreateIndex: true, useNewUrlParser: true}, ( err ) => {
 

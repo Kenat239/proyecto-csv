@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 import mongooseUniqueValidator from 'mongoose-unique-validator';
 
 export interface IHistorial extends Document {
-   idGps:string;
+   
     protocolo: string;
    imei: string;
     latitud: number;
@@ -20,12 +20,13 @@ export interface IHistorial extends Document {
     distancia:number;
     distanciatotal:number;
     movimiento:string;
+    gps:string;
 }
 
 const historialSchema: Schema = new Schema({
-    idGps:{type: Schema.Types.ObjectId,  ref: 'Gps'},
+    
     protocolo: { type: String, required: [true, 'La serie de GPS es obligatorio']},
-    imei: { type: String, unique:true, required: [true, 'El IMEI del GPS es obligatorio'] },
+    imei: { type: String, required: [false, 'El IMEI del GPS es obligatorio'] },
     latitud: { type: Number, required: [true, 'La latitud es requerida'] },
     longitud: { type: Number, required: [ true, 'La longitud es requerida'] },
     altitud: { type: Number, required: [ true, 'La altitud es requerida'] },
@@ -41,6 +42,7 @@ const historialSchema: Schema = new Schema({
     distancia: { type: Number, required: [ true, 'La distancia es requerida'] },
     distanciatotal: { type: Number, required: [ true, 'La distancia total es requerida'] },
     movimiento: { type: String, required: [ true, 'el movimiento es requerido'] },
+    gps:{type: Schema.Types.ObjectId,  ref: 'Gps'},
 }, { collection: 'Historial'} );
 
 historialSchema.plugin(mongooseUniqueValidator, { message: '{PATH} debe ser unico' } );

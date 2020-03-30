@@ -13,7 +13,7 @@ export interface ILast extends Document {
 
 const lastShema: Schema = new Schema ({
     idGps: {type:Schema.Types.ObjectId,  ref: 'Gps'},
-    latidud: {type:Number, required: [false, 'se necesita la latitud']},
+    latitud: {type:Number, required: [true, 'se necesita la latitud']},
     longitud: {type:Number, required: [true, 'se necesita la longitud']},
     altitud: {type:Number, required: [true, 'se necesita la altitud']},
     velocidad: {type:String, required: [true, 'se necesita la velocidad']},

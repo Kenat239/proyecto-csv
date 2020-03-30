@@ -14,7 +14,7 @@ export interface IGps extends Document {
 
 const gpsSchema: Schema = new Schema({
     serie: { type: String, unique:true, required: [true, 'La serie de GPS es obligatorio']},
-    imei: { type: String, unique:true, required: [true, 'El IMEI del GPS es obligatorio'] },
+    imei: { type: String, required: [true, 'El IMEI del GPS es obligatorio'] },
     latitud: { type: Number, required: [true, 'La latitud es requerida'] },
     longitud: { type: Number, required: [ true, 'La longitud es requerida'] },
     velocidad: { type: String, required: [ true, 'la velocidad es requerida'] },

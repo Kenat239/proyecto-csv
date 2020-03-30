@@ -1,5 +1,4 @@
 import Estado, {IEstado} from '../modelos/estados';
-import { resolve } from 'path';
 import estados from '../modelos/estados';
 
 interface ICrearEstado {
