@@ -42,26 +42,6 @@ lastRoutes.post('/', async( req: Request, res: Response ) => {
     })
 });
 
-//========================================================
-// consulta Last
-//========================================================
-/*lastRoutes.post('/last', async(req:Request, res:Response) => {
-    const id = req.params.historial.id
-    
-    await last.lastUbication (id)
-    .then( ( datos:any ) => {
-        res.status(200).json({
-            ok:true,
-            mensaje: 'estos son los datos',
-            data:datos
-        })
-    })
-    .catch( ( err:Error ) => {
-        res.status(400).json({
-            ok:false,
-            error:err
-        })
-    })
-})*/
+
 
 export default lastRoutes;
