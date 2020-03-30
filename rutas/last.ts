@@ -10,7 +10,8 @@ lastRoutes.post('/', async( req: Request, res: Response ) => {
     const body = req.body;
 
     await last.lastUbication( {
-            protocolo: body.protocolo,
+          idGps:body.idGps, 
+        protocolo: body.protocolo,
             imei: body.imei,
             latitud: body.latitud,
             longitud: body.longitud,
@@ -44,10 +45,10 @@ lastRoutes.post('/', async( req: Request, res: Response ) => {
 //========================================================
 // consulta Last
 //========================================================
-lastRoutes.get('/last/:id', async(req:Request, res:Response) => {
+/*lastRoutes.post('/last', async(req:Request, res:Response) => {
     const id = req.params.historial.id
     
-    await last.datoslast (id)
+    await last.lastUbication (id)
     .then( ( datos:any ) => {
         res.status(200).json({
             ok:true,
@@ -61,6 +62,6 @@ lastRoutes.get('/last/:id', async(req:Request, res:Response) => {
             error:err
         })
     })
-})
+})*/
 
 export default lastRoutes;

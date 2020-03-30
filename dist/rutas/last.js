@@ -25,6 +25,7 @@ const lastRoutes = express_1.Router();
 lastRoutes.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     yield last.lastUbication({
+        idGps: body.idGps,
         protocolo: body.protocolo,
         imei: body.imei,
         latitud: body.latitud,
@@ -58,21 +59,22 @@ lastRoutes.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* (
 //========================================================
 // consulta Last
 //========================================================
-lastRoutes.get('/last/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.historial.id;
-    yield last.datoslast(id)
-        .then((datos) => {
+/*lastRoutes.post('/last', async(req:Request, res:Response) => {
+    const id = req.params.historial.id
+    
+    await last.lastUbication (id)
+    .then( ( datos:any ) => {
         res.status(200).json({
-            ok: true,
+            ok:true,
             mensaje: 'estos son los datos',
-            data: datos
-        });
+            data:datos
+        })
     })
-        .catch((err) => {
+    .catch( ( err:Error ) => {
         res.status(400).json({
-            ok: false,
-            error: err
-        });
-    });
-}));
+            ok:false,
+            error:err
+        })
+    })
+})*/
 exports.default = lastRoutes;
