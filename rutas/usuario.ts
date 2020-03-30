@@ -21,7 +21,8 @@ console.log(body);
         apellidoM: body.apellidoM,
         email: body.email,
         password: bcrypt.hashSync( body.password, 10 ),
-        empresa: body.empresa
+        empresa: body.empresa,
+        role: body.role
     }).then((usuarioCreado: any) => {
         return res.status(200).json({
             ok: true,

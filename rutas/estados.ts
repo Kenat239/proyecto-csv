@@ -62,6 +62,33 @@ estadoRoutes.get ('/', async(req:Request, res:Response) => {
     });
 });
 
+
+//=======================================================
+// Consultar todos los Estados activos
+//=======================================================
+
+estadoRoutes.get('/activos', async(req:Request, res:Response) => {
+    
+    await estados.ActivEmpresa()
+    
+    
+    .then((resultado:any) => {
+        return res.status(200).json({
+            ok:true,
+            empresa:resultado
+        });
+    })
+
+    .catch((error:Error) => {
+        res.status(500).json({
+            ok:false,
+            eror:error
+            
+        });
+    });
+});
+
+
 //=======================================================
 // buscar Estado especifico por id
 //=======================================================

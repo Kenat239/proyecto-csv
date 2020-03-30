@@ -15,21 +15,16 @@ csvRoutes.put ('/', (req:Request, res:Response) =>{
     csvtojson()
     .fromFile ('./uploads/Csvs/filename.csv')
     .then((csv:any)=> {
-        if (!csvtojson ) {
-        return res.status(401).json ({
-            ok: false,
-            mensaje: 'no hay datos en el archivo',
-
-        })
-    }
-        
-           res.status(200).json ({
+    
+       return res.status(200).json ({
            ok:true,
            mensaje: 'establecido archivo csv',
            prueba:csv
        }), 
        console.log(csv),
 
+       
+        
        Csv.insertMany (csv, (err:Error, res) => {
         if (err) throw err;
 
@@ -38,7 +33,7 @@ csvRoutes.put ('/', (req:Request, res:Response) =>{
       
         })
         
-            
+         
         
     })
     

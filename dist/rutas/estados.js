@@ -66,6 +66,24 @@ estadoRoutes.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     });
 }));
 //=======================================================
+// Consultar todos los Estados activos
+//=======================================================
+estadoRoutes.get('/activos', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    yield estados.ActivEmpresa()
+        .then((resultado) => {
+        return res.status(200).json({
+            ok: true,
+            empresa: resultado
+        });
+    })
+        .catch((error) => {
+        res.status(500).json({
+            ok: false,
+            eror: error
+        });
+    });
+}));
+//=======================================================
 // buscar Estado especifico por id
 //=======================================================
 estadoRoutes.get('/buscar/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {

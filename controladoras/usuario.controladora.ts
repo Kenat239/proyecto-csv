@@ -7,7 +7,8 @@ interface ICrearUsuario {
     apellidoM: IUsuario['apellidoM'];
     email: IUsuario['email'];
     password: IUsuario['password'];   
-    empresa: IUsuario['empresa'];     
+    empresa: IUsuario['empresa'];
+    role:IUsuario['role'];     
 }
 
 interface ILogin {

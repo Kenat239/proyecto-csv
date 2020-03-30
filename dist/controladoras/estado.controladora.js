@@ -13,8 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const estados_1 = __importDefault(require("../modelos/estados"));
+const estados_2 = __importDefault(require("../modelos/estados"));
 //=======================================================
-// Crear Empresa
+// Crear Estado
 //=======================================================
 function crearEstado({ N_Estado, capital, municipio, codigopostal, status }) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -66,6 +67,21 @@ function buscarEstado(id) {
     });
 }
 exports.buscarEstado = buscarEstado;
+//=======================================================
+// Consultar todos los Estados activos
+//=======================================================
+function ActivEmpresa() {
+    return __awaiter(this, void 0, void 0, function* () {
+        return estados_2.default.find({ status: 'ACTIVO' })
+            .then((estado) => {
+            return estado;
+        })
+            .catch((error) => {
+            throw (error);
+        });
+    });
+}
+exports.ActivEmpresa = ActivEmpresa;
 //=======================================================
 // Desactivar o Activar Estado
 //=======================================================

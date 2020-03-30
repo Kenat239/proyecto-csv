@@ -38,7 +38,8 @@ usuarioRoutes.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function
         apellidoM: body.apellidoM,
         email: body.email,
         password: bcrypt_1.default.hashSync(body.password, 10),
-        empresa: body.empresa
+        empresa: body.empresa,
+        role: body.role
     }).then((usuarioCreado) => {
         return res.status(200).json({
             ok: true,

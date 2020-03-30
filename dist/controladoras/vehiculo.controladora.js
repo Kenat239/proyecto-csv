@@ -93,3 +93,38 @@ function DesactivarVehiculo(id, stat) {
     });
 }
 exports.DesactivarVehiculo = DesactivarVehiculo;
+//=======================================================
+// muestreo de todos los gps por empresa y vehiculos
+//=======================================================
+function muestreo(usuario) {
+    return __awaiter(this, void 0, void 0, function* () {
+        console.log(usuario);
+        const empresa = usuario.empresa;
+        const role = usuario.role;
+        return new Promise((resolve, reject) => {
+            switch (role) {
+                case 'ADMIN_ROLE':
+                    vehiculo_1.default.find({})
+                        .then((muestra) => {
+                        resolve(muestra);
+                    })
+                        .catch((err) => {
+                        reject(err);
+                    });
+                    break;
+                case 'USER_ROLE':
+                    vehiculo_1.default.find({ empresa: empresa })
+                        .then((muestra) => {
+                        resolve(muestra);
+                    })
+                        .catch((err) => {
+                        reject(err);
+                    });
+                    break;
+                    return reject;
+                    break;
+            }
+        });
+    });
+}
+exports.muestreo = muestreo;

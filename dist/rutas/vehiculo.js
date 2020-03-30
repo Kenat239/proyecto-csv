@@ -15,9 +15,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const vehiculo = __importStar(require("../controladoras/vehiculo.controladora"));
+const autenticacion_1 = __importDefault(require("../middlewares/autenticacion"));
 const vehiculoRoutes = express_1.Router();
 //========================================================
 // Crear Vehiculo
@@ -100,6 +104,28 @@ vehiculoRoutes.put('/:id', (req, res) => __awaiter(void 0, void 0, void 0, funct
             ok: false,
             mensjae: 'Error al encontrar el id:' + id + ' del Vehiculo',
             error
+        });
+    });
+}));
+//=======================================================
+//   muestreo de todos los gps por empresa y vehiculos
+//=======================================================
+vehiculoRoutes.get('/muestra/muestra', autenticacion_1.default, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const usuario = req.body.usuario;
+    yield vehiculo.muestreo(usuario)
+        .then((mostrar) => {
+        console.log(mostrar);
+        return res.status(200).json({
+            ok: true,
+            mensaje: `bienvenido admin`,
+            empresa: mostrar
+        });
+    })
+        .catch((err) => {
+        throw res.status(500).json({
+            ok: false,
+            mensaje: 'error al mostrar',
+            err: err
         });
     });
 }));

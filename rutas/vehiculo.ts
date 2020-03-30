@@ -1,5 +1,7 @@
 import { Router, Request, Response } from 'express';
 import * as vehiculo from '../controladoras/vehiculo.controladora';
+import verificaToken from '../middlewares/autenticacion';
+import usuario, { IUsuario } from '../modelos/usuario';
 
 
 const vehiculoRoutes = Router();
@@ -95,7 +97,31 @@ vehiculoRoutes.put('/:id', async( req: Request, res: Response ) => {
     });
 });
 
+//=======================================================
+//   muestreo de todos los gps por empresa y vehiculos
+//=======================================================
 
+vehiculoRoutes.get ('/muestra/muestra', verificaToken, async(req:Request,res:Response) => {
+
+    const usuario = req.body.usuario
+
+        await vehiculo.muestreo(usuario)
+        .then ( (mostrar:any) => {
+            console.log(mostrar)
+            return res.status(200).json({
+                ok:true,
+                mensaje: `bienvenido admin`,
+                empresa:mostrar
+            });
+        })  
+        .catch( (err:Error) => {
+            throw res.status(500).json({
+                ok:false,
+                mensaje: 'error al mostrar',
+                err:err
+            });
+        })
+})
 
 
 export default vehiculoRoutes;

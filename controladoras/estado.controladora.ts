@@ -1,5 +1,6 @@
 import Estado, {IEstado} from '../modelos/estados';
 import { resolve } from 'path';
+import estados from '../modelos/estados';
 
 interface ICrearEstado {
     N_Estado:string,
@@ -11,7 +12,7 @@ interface ICrearEstado {
 
 
 //=======================================================
-// Crear Empresa
+// Crear Estado
 //=======================================================
 
 async function crearEstado ({
@@ -81,6 +82,22 @@ async function buscarEstado (id: any) {
 }
 
 //=======================================================
+// Consultar todos los Estados activos
+//=======================================================
+
+async function ActivEmpresa (): Promise <IEstado> {
+    return estados.find({status: 'ACTIVO'})
+
+    .then((estado:any) => {
+        return estado
+    })
+
+    .catch((error:Error) => {
+        throw (error)
+    })
+}
+
+//=======================================================
 // Desactivar o Activar Estado
 //=======================================================
 
@@ -102,5 +119,6 @@ export {
     crearEstado,
     cargarEstado,
     buscarEstado,
+    ActivEmpresa,
     desactivaEstado
 }

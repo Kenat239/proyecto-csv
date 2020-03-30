@@ -18,13 +18,7 @@ csvRoutes.put('/', (req, res) => {
     csvtojson_1.default()
         .fromFile('./uploads/Csvs/filename.csv')
         .then((csv) => {
-        if (!csvtojson_1.default) {
-            return res.status(401).json({
-                ok: false,
-                mensaje: 'no hay datos en el archivo',
-            });
-        }
-        res.status(200).json({
+        return res.status(200).json({
             ok: true,
             mensaje: 'establecido archivo csv',
             prueba: csv

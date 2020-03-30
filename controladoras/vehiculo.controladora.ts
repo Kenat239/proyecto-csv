@@ -1,6 +1,6 @@
 import Vehiculo, { IVehiculo } from '../modelos/vehiculo';
 import Gps,{ IGps } from '../modelos/gps';
-
+import usuario, { IUsuario } from '../modelos/usuario';
 
 interface ICrearVehiculo {
     placas: IVehiculo['placas'];
@@ -93,10 +93,46 @@ async function DesactivarVehiculo( id: string, stat: string ){
     });
 }
 
+//=======================================================
+// muestreo de todos los gps por empresa y vehiculos
+//=======================================================
+async function muestreo (usuario: IUsuario) {
+    console.log(usuario)  
+   const empresa = usuario.empresa;
+   const role = usuario.role
+    
+    return new Promise ( (resolve,reject) => {
 
+
+        switch (role) {
+            case 'ADMIN_ROLE':
+                Vehiculo.find ( {})
+                .then ( (muestra:any) => {
+                    resolve ( muestra );
+                })
+                .catch ( ( err:Error ) => {
+                    reject ( err );
+                })
+                break;
+                case 'USER_ROLE':
+                    Vehiculo.find ( {empresa:empresa})
+                    .then ( (muestra:any) => {
+                        resolve ( muestra );
+                        })
+                        .catch ( ( err:Error ) => {
+                                reject ( err );
+                        })
+                    break;
+                        return reject;
+                    break;  
+        }
+   })
+
+}
 export {
     BuscarVehiculo,
     CrearVehiculo,
     CargarVehiculos,
-    DesactivarVehiculo
+    DesactivarVehiculo,
+    muestreo
 }
