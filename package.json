@@ -23,7 +23,7 @@
     "express": "^4.16.4",
     "express-fileupload": "^1.1.6",
     "gps": "^0.5.3",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.9.6",
     "mongoose-unique-validator": "^2.0.2",
